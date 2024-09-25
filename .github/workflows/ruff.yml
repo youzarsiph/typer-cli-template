@@ -15,10 +15,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install poetry
-          python -m poetry install
+          python -m pip install ruff
 
       - name: Analyzing the code with Ruff
-        run: |
-          python -m poetry shell
-          python -m ruff check cli
+        run: python -m ruff check cli
