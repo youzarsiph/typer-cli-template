@@ -3,7 +3,7 @@ name: Black
 on: [push]
 
 jobs:
-  build:
+  format:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,10 +12,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade pip
           python -m pip install black
 
       - name: Checking the code format with Black
-        run: python -m black --check $(git ls-files '*.py')
+        run: |
+          source .venv/bin/activate
+          python -m black --check $(git ls-files '*.py')

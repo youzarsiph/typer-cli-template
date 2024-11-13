@@ -1,4 +1,4 @@
-""" CodePilot CLI """
+""" Typer CLI Template """
 
 import typer
 from cli.commands import command_list
@@ -6,7 +6,7 @@ from cli.commands import command_list
 
 # CLI
 app = typer.Typer(
-    name="code-pilot",
+    name="typer-cli",
     no_args_is_help=True,
     rich_markup_mode="rich",
     help="Typer CLI Template",

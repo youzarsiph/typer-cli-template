@@ -3,7 +3,8 @@ name: Ruff
 on: [push]
 
 jobs:
-  build:
+
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -12,10 +13,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
+          python -m venv .venv
+          source .venv/bin/activate
           python -m pip install --upgrade pip
           python -m pip install ruff
 
       - name: Analyzing the code with Ruff
-        run: python -m ruff check cli
+        run: |
+          source .venv/bin/activate
+          python -m ruff check $(git ls-files '*.py')
